@@ -3,26 +3,28 @@ package com.photoapp.api.users.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class WebSecurity {
 
-	 @Bean
-	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	        http
-	                .authorizeHttpRequests((authorize) -> {
-						try {
-							authorize
-							        .mvcMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-							        .anyRequest().permitAll().and().csrf().disable();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}); 
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests((authorize) -> {
+			authorize.anyRequest().permitAll();
+		});
 
-	        return http.build();
-	    }
+		http.csrf(csrf -> csrf.disable());
+		
+		http.headers(headers -> headers.frameOptions().disable());
+
+		return http.build();
+	}
+	
+	@Bean
+	BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 }
