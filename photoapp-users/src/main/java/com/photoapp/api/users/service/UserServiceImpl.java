@@ -1,9 +1,13 @@
 package com.photoapp.api.users.service;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +38,15 @@ public class UserServiceImpl implements UserService{
 		UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
 		UserEntity newUser = userRepository.save(userEntity);
 		
-		System.out.println(newUser.getEncryptedPassword());
-		
 		return modelMapper.map(newUser, UserDTO.class);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserEntity userEntity = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+		User user = new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), true, true, true, true, new ArrayList<>());
+				
+		return user;
 	}
 
 }

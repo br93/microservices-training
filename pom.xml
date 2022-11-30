@@ -51,8 +51,6 @@
 		</plugins>
 	</build>
 	
-	
-
 	<modules>
 		<module>photoapp-discovery-service</module>
 		<module>photoapp-users</module>
