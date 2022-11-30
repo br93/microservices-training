@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.photoapp.api.users.service.UserService;
@@ -18,15 +17,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WebSecurity {
 
-	private final Environment environment;
 	private final AuthenticationManagerBuilder authManagerBuilder;
+	private final Environment environment;
 	private final UserService userService;
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests(authorizeRequests -> authorizeRequests.antMatchers("/**")
-				.hasIpAddress(environment.getProperty("gateway.ip")))
-				.addFilter(new AuthenticationFilter(authManagerBuilder.getOrBuild()))
+		http.authorizeRequests(authorizeRequests -> authorizeRequests.antMatchers("/**").permitAll())
+				//.hasIpAddress(environment.getProperty("gateway.ip")))
+				.addFilter(new AuthenticationFilter(authManagerBuilder.getOrBuild(), 
+						environment, userService))
 				.csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions().disable());
 
@@ -38,7 +38,7 @@ public class WebSecurity {
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-
+	
 	
 
 }
