@@ -7,7 +7,7 @@
 		<artifactId>photoapp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.photoapp.discovery</groupId>
+	<groupId>com.photoapp.api.discovery</groupId>
 	<artifactId>photoapp-discovery-service</artifactId>
 	<name>PhotoAppDiscoveryService</name>
 	<description>Photo App Discovery Service</description>

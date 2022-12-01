@@ -1,4 +1,4 @@
-package com.photoapp.discovery;
+package com.photoapp.api.discovery;
 
 
 import org.springframework.boot.SpringApplication;
