@@ -20,13 +20,12 @@ public class WebSecurity {
 	private final AuthenticationManagerBuilder authManagerBuilder;
 	private final Environment environment;
 	private final UserService userService;
-
+	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests(authorizeRequests -> authorizeRequests.antMatchers("/**").permitAll())
 				//.hasIpAddress(environment.getProperty("gateway.ip")))
-				.addFilter(new AuthenticationFilter(authManagerBuilder.getOrBuild(), 
-						environment, userService))
+				.addFilter(getAuthenticationFilter())
 				.csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions().disable());
 
@@ -37,6 +36,13 @@ public class WebSecurity {
 	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
+	}
+	
+	private AuthenticationFilter getAuthenticationFilter() {
+		AuthenticationFilter authFilter = new AuthenticationFilter(authManagerBuilder.getOrBuild(), environment, userService);
+		authFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
+		
+		return authFilter;
 	}
 	
 	
