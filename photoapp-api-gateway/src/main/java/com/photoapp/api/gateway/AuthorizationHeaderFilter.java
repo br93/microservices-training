@@ -1,4 +1,4 @@
-package com.photoapp.api.gateway.filter;
+package com.photoapp.api.gateway;
 
 import java.security.Key;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.google.common.net.HttpHeaders;
-import com.photoapp.api.gateway.filter.AuthorizationHeaderFilter.Config;
+import com.photoapp.api.gateway.AuthorizationHeaderFilter.Config;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
