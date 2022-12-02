@@ -29,7 +29,7 @@ public class UserController {
 
 	@GetMapping("status/check")
 	public String status() {
-		return "Ok, on port: " + env.getProperty("local.server.port");
+		return env.getProperty("status.check") + ", on port: " + env.getProperty("local.server.port");
 	}
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
