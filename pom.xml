@@ -71,6 +71,7 @@
 		<module>photoapp-users</module>
 		<module>photoapp-account-management</module>
 		<module>photoapp-api-gateway</module>
+		<module>photoapp-albums</module>
 	</modules>
 
 </project>
