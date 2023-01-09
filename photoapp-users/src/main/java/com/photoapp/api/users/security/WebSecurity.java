@@ -23,10 +23,10 @@ public class WebSecurity {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests(
-				authorizeRequests -> authorizeRequests.antMatchers(environment.getProperty("api.h2.console.url.path")).permitAll()
-					.antMatchers(environment.getProperty("api.actuator.url.path")).permitAll())
-				// .hasIpAddress(environment.getProperty("gateway.ip")))
+		http.authorizeHttpRequests(
+				authorizeRequests -> authorizeRequests.requestMatchers(environment.getProperty("api.h2.console.url.path")).permitAll()
+					.requestMatchers(environment.getProperty("api.actuator.url.path")).permitAll()
+					.requestMatchers(environment.getProperty("users.url.path")).permitAll())
 				.addFilter(getAuthenticationFilter())
 				.csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions().disable());
