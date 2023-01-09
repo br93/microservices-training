@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
+import com.photoapp.api.users.shared.FeignErrorDecoder;
+
+import feign.Logger;
+
 @Configuration
 public class PhotoAppUsersConfiguration {
 	
@@ -18,6 +22,16 @@ public class PhotoAppUsersConfiguration {
 	@LoadBalanced
 	RestTemplate restTemplate() {
 		return new RestTemplate();
+	}
+	
+	@Bean
+	Logger.Level feignLogger(){
+		return Logger.Level.FULL;
+	}
+	
+	@Bean
+	public FeignErrorDecoder getFeignErrorDecoder() {
+		return new FeignErrorDecoder();
 	}
 
 }

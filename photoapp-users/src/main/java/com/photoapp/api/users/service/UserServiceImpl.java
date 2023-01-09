@@ -6,17 +6,13 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import com.photoapp.api.users.data.AlbumServiceClient;
 import com.photoapp.api.users.data.UserEntity;
 import com.photoapp.api.users.data.UserRepository;
 import com.photoapp.api.users.model.AlbumResponseModel;
@@ -30,8 +26,11 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
-	private final RestTemplate restTemplate;
-	private final Environment env;
+	//private final RestTemplate restTemplate;
+	//private final Environment env;
+	private final AlbumServiceClient albumServiceClient;
+		
+	//Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public UserDTO createUser(UserDTO userDetails) {
@@ -77,12 +76,21 @@ public class UserServiceImpl implements UserService {
 
 		UserDTO userDTO = new ModelMapper().map(userEntity, UserDTO.class);
 
-		String albumsUrl = String.format(env.getProperty("albums.url"), userId);
-		ResponseEntity<List<AlbumResponseModel>> albumListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET,
-				null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
-				});
-		List<AlbumResponseModel> albumList = albumListResponse.getBody();
+		//REST TEMPLATE//
+		/*String albumsUrl = String.format(env.getProperty("albums.url"), userId);
+		ResponseEntity<List<AlbumResponseModel>> albumListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {});
+		List<AlbumResponseModel> albumList = albumListResponse.getBody();*/
 		
+		List<AlbumResponseModel> albumList = albumServiceClient.getAlbums(userId);
+		
+		//TRY CATCH DO FEIGNEXCEPTION SEM ERRORDECODER//
+		/*try {
+			albumList = albumServiceClient.getAlbums(userId);
+		} catch (FeignException e) {
+			logger.error(e.getLocalizedMessage());
+		}*/
+		
+				
 		userDTO.setAlbums(albumList);
 
 		return userDTO;
