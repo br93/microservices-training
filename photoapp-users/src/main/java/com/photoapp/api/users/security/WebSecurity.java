@@ -26,7 +26,7 @@ public class WebSecurity {
 		http.authorizeHttpRequests(
 				authorizeRequests -> authorizeRequests.requestMatchers(environment.getProperty("api.h2.console.url.path")).permitAll()
 					.requestMatchers(environment.getProperty("api.actuator.url.path")).permitAll()
-					.requestMatchers(environment.getProperty("users.url.path")).permitAll())
+					.requestMatchers(environment.getProperty("users.url.path")).authenticated())
 				.addFilter(getAuthenticationFilter())
 				.csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions().disable());
