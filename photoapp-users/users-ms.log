@@ -1,0 +1,83 @@
+2023-01-10T14:56:09.033-03:00  INFO 13380 --- [main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:14.638-03:00  INFO 13380 --- [main] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=users-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:14.644-03:00  INFO 13380 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/br93/microservices-training-config-server/users-ms.properties'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/br93/microservices-training-config-server/application.properties'}]
+2023-01-10T14:56:14.665-03:00  INFO 13380 --- [main] c.p.api.users.PhotoAppUsersApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-01-10T14:56:14.680-03:00  INFO 13380 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:14.681-03:00  INFO 13380 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:14.681-03:00  INFO 13380 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:14.681-03:00  INFO 13380 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=users-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:15.927-03:00  INFO 13380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-10T14:56:16.070-03:00  INFO 13380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 1 JPA repository interfaces.
+2023-01-10T14:56:16.471-03:00  INFO 13380 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9b28a394-1015-3b5b-a830-a27142e1054e
+2023-01-10T14:56:16.545-03:00  INFO 13380 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.photoapp.api.users.data.AlbumServiceClient' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-01-10T14:56:17.281-03:00  INFO 13380 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-01-10T14:56:17.298-03:00  INFO 13380 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-10T14:56:17.299-03:00  INFO 13380 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-10T14:56:17.453-03:00  INFO 13380 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-10T14:56:17.454-03:00  INFO 13380 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2773 ms
+2023-01-10T14:56:18.283-03:00  INFO 13380 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-10T14:56:18.343-03:00  INFO 13380 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-01-10T14:56:18.537-03:00  WARN 13380 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-01-10T14:56:18.716-03:00  INFO 13380 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-10T14:56:19.081-03:00  INFO 13380 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e757f39
+2023-01-10T14:56:19.084-03:00  INFO 13380 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-10T14:56:19.166-03:00  INFO 13380 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-01-10T14:56:20.201-03:00  INFO 13380 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-10T14:56:20.215-03:00  INFO 13380 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-10T14:56:20.755-03:00  WARN 13380 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-10T14:56:20.917-03:00  INFO 13380 --- [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'albums-ms' URL not provided. Will try picking an instance via load-balancing.
+2023-01-10T14:56:23.172-03:00  INFO 13380 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:23.667-03:00  INFO 13380 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-01-10T14:56:23.760-03:00  INFO 13380 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6b37cadf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c018211, org.springframework.security.web.context.SecurityContextHolderFilter@1b5593e6, org.springframework.security.web.header.HeaderWriterFilter@5b61d156, org.springframework.security.web.authentication.logout.LogoutFilter@6e2f838e, com.photoapp.api.users.security.AuthenticationFilter@267d9256, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46c8a8e0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@160ecb8f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6cb6a38c, org.springframework.security.web.access.ExceptionTranslationFilter@597f9d9d, org.springframework.security.web.access.intercept.AuthorizationFilter@230d0018]
+2023-01-10T14:56:25.717-03:00  INFO 13380 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:25.745-03:00  INFO 13380 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-01-10T14:56:25.822-03:00  WARN 13380 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-01-10T14:56:25.950-03:00  INFO 13380 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 56760 (http) with context path ''
+2023-01-10T14:56:25.951-03:00  INFO 13380 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 56760
+2023-01-10T14:56:25.958-03:00  INFO 13380 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-01-10T14:56:26.014-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-01-10T14:56:26.021-03:00  INFO 13380 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T14:56:26.051-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-01-10T14:56:26.052-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-01-10T14:56:26.182-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-01-10T14:56:26.188-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-01-10T14:56:26.195-03:00  INFO 13380 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-01-10T14:56:26.208-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1673373386207 with initial instances count: 1
+2023-01-10T14:56:26.220-03:00  INFO 13380 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application USERS-MS with eureka with status UP
+2023-01-10T14:56:26.221-03:00  INFO 13380 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1673373386221, current=UP, previous=STARTING]
+2023-01-10T14:56:26.224-03:00  INFO 13380 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS-MS/users-ms:be86b44f6ce202a34b57c7add1342daf: registering service...
+2023-01-10T14:56:26.267-03:00  INFO 13380 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS-MS/users-ms:be86b44f6ce202a34b57c7add1342daf - registration status: 204
+2023-01-10T14:56:27.519-03:00  INFO 13380 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:27.539-03:00  INFO 13380 --- [main] c.p.api.users.PhotoAppUsersApplication   : Started PhotoAppUsersApplication in 30.657 seconds (process running for 31.596)
+2023-01-10T14:56:28.268-03:00  INFO 13380 --- [RMI TCP Connection(6)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-10T14:56:28.269-03:00  INFO 13380 --- [RMI TCP Connection(6)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-10T14:56:28.273-03:00  INFO 13380 --- [RMI TCP Connection(6)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-01-10T15:01:26.059-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:06:26.071-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:11:26.076-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:16:26.091-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:21:26.104-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:26:26.106-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:31:26.114-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:36:26.120-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:41:26.136-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:46:26.138-03:00  INFO 13380 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:48:57.955-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-01-10T15:48:58.069-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application USERS-MS with eureka with status DOWN
+2023-01-10T15:48:58.070-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1673376538070, current=DOWN, previous=UP]
+2023-01-10T15:48:58.072-03:00  INFO 13380 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS-MS/users-ms:be86b44f6ce202a34b57c7add1342daf: registering service...
+2023-01-10T15:48:58.112-03:00  INFO 13380 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS-MS/users-ms:be86b44f6ce202a34b57c7add1342daf - registration status: 204
+2023-01-10T15:48:58.274-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-01-10T15:48:58.288-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-01-10T15:48:58.416-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-10T15:48:58.459-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-10T15:48:58.471-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-10T15:48:59.476-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-01-10T15:49:02.489-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-01-10T15:49:02.614-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USERS-MS/users-ms:be86b44f6ce202a34b57c7add1342daf - deregister  status: 200
+2023-01-10T15:49:02.671-03:00  INFO 13380 --- [RMI TCP Connection(71)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

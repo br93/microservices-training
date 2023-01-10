@@ -1,0 +1,65 @@
+2023-01-10T14:56:06.335-03:00  INFO 17512 --- [main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:11.901-03:00  INFO 17512 --- [main] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=albums-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:11.903-03:00  INFO 17512 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/br93/microservices-training-config-server/albums-ms.properties'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/br93/microservices-training-config-server/application.properties'}]
+2023-01-10T14:56:11.919-03:00  INFO 17512 --- [main] c.p.a.albums.PhotoAppAlbumsApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-01-10T14:56:11.932-03:00  INFO 17512 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:11.932-03:00  INFO 17512 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=albums-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:11.932-03:00  INFO 17512 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2023-01-10T14:56:11.932-03:00  INFO 17512 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=albums-ms, profiles=[default], label=null, version=6797c0c706b4831d035cb79496c0121da183644a, state=null
+2023-01-10T14:56:13.015-03:00  INFO 17512 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c3cc3dd1-24c2-36f4-82ab-ebabe5f68d4a
+2023-01-10T14:56:13.604-03:00  INFO 17512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-01-10T14:56:13.617-03:00  INFO 17512 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-10T14:56:13.618-03:00  INFO 17512 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-10T14:56:13.736-03:00  INFO 17512 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-10T14:56:13.737-03:00  INFO 17512 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1803 ms
+2023-01-10T14:56:16.570-03:00  INFO 17512 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:18.500-03:00  INFO 17512 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:18.530-03:00  INFO 17512 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-01-10T14:56:18.643-03:00  WARN 17512 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-01-10T14:56:18.657-03:00  INFO 17512 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-01-10T14:56:18.784-03:00  INFO 17512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 56737 (http) with context path ''
+2023-01-10T14:56:18.786-03:00  INFO 17512 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 56737
+2023-01-10T14:56:18.792-03:00  INFO 17512 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-01-10T14:56:18.861-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-01-10T14:56:18.871-03:00  INFO 17512 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T14:56:18.907-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-01-10T14:56:18.908-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-01-10T14:56:18.908-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-01-10T14:56:18.908-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-01-10T14:56:18.908-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-01-10T14:56:18.908-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-01-10T14:56:18.909-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-01-10T14:56:19.235-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-01-10T14:56:19.243-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-01-10T14:56:19.251-03:00  INFO 17512 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-01-10T14:56:19.269-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1673373379268 with initial instances count: 1
+2023-01-10T14:56:19.282-03:00  INFO 17512 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application ALBUMS-MS with eureka with status UP
+2023-01-10T14:56:19.283-03:00  INFO 17512 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1673373379283, current=UP, previous=STARTING]
+2023-01-10T14:56:19.285-03:00  INFO 17512 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ALBUMS-MS/albums-ms:282869bf5c9ed94cba8d22a443b6eed5: registering service...
+2023-01-10T14:56:19.343-03:00  INFO 17512 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ALBUMS-MS/albums-ms:282869bf5c9ed94cba8d22a443b6eed5 - registration status: 204
+2023-01-10T14:56:20.677-03:00  INFO 17512 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-01-10T14:56:20.697-03:00  INFO 17512 --- [main] c.p.a.albums.PhotoAppAlbumsApplication   : Started PhotoAppAlbumsApplication in 26.74 seconds (process running for 27.593)
+2023-01-10T14:56:21.934-03:00  INFO 17512 --- [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-10T14:56:21.935-03:00  INFO 17512 --- [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-10T14:56:21.938-03:00  INFO 17512 --- [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-01-10T15:01:18.917-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:06:18.917-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:11:18.925-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:16:18.933-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:21:18.949-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:26:18.964-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:31:18.973-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:36:18.979-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:41:18.994-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:46:19.006-03:00  INFO 17512 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-10T15:49:03.513-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-01-10T15:49:03.593-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application ALBUMS-MS with eureka with status DOWN
+2023-01-10T15:49:03.595-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1673376543595, current=DOWN, previous=UP]
+2023-01-10T15:49:03.596-03:00  INFO 17512 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ALBUMS-MS/albums-ms:282869bf5c9ed94cba8d22a443b6eed5: registering service...
+2023-01-10T15:49:03.624-03:00  INFO 17512 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ALBUMS-MS/albums-ms:282869bf5c9ed94cba8d22a443b6eed5 - registration status: 204
+2023-01-10T15:49:03.720-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-01-10T15:49:03.728-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-01-10T15:49:03.794-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-01-10T15:49:06.805-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-01-10T15:49:06.813-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ALBUMS-MS/albums-ms:282869bf5c9ed94cba8d22a443b6eed5 - deregister  status: 200
+2023-01-10T15:49:06.879-03:00  INFO 17512 --- [RMI TCP Connection(73)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
