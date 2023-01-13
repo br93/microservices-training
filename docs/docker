@@ -11,9 +11,9 @@ docker run --name elasticsearch -v esdata1:/usr/share/elasticsearch/data -d -p 9
 docker run --name kibana -d -p 5601:5601 --net photo-app -it kibana:7.3.0
 
 docker run --name albums-ms -v /home/api-logs:/api-logs -d -e eureka.host=discovery-service -e config.host=config-server --net photo-app -it brunor9/brpa-albums-ms
+docker run --name users-ms -v /home/api-logs:/api-logs -d -e eureka.host=discovery-service -e config.host=config-server -e db.host=mysql --net photo-app -it brunor9/brpa-users-ms
 
 docker run --name mysql -v /var/lib/mysql:/var/lib/mysql -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=photo_app -e MYSQL_USER=user -e MYSQL_PASSWORD=pass --net photo-app -it mysql:latest
-
 docker run --name logstash -v /home/api-logs:/api-logs -d --net photo-app -it brunor9/brpa-logstash
 
 docker login --username=[username]
