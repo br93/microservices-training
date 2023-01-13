@@ -7,10 +7,12 @@ docker run --name config-server -d -p 8888:8888 -e spring.rabbitmq.host=rabbitmq
 docker run --name discovery-service -d -p 8761:8761 --net photo-app -it brunor9/brpa-discovery-service
 docker run --name api-gateway -d -p 8765:8765 -e eureka.host=discovery-service -e config.host=config-server --net photo-app -it brunor9/brpa-api-gateway
 
-docker run --name elasticsearch -d -p 9200:9200 -p 9300:9300 -e discovery.type=single-node --net photo-app -it elasticsearch:7.3.0
+docker run --name elasticsearch -v esdata1:/usr/share/elasticsearch/data -d -p 9200:9200 -p 9300:9300 -e discovery.type=single-node --net photo-app -it elasticsearch:7.3.0
 docker run --name kibana -d -p 5601:5601 --net photo-app -it kibana:7.3.0
 
-docker run --name albums-ms -d -e eureka.host=discovery-service -e config.host=config-server --net photo-app -it brunor9/brpa-albums-ms
+docker run --name albums-ms -v /home/api-logs:/api-logs -d -e eureka.host=discovery-service -e config.host=config-server --net photo-app -it brunor9/brpa-albums-ms
+
+docker run --name logstash -v /home/api-logs:/api-logs -d --net photo-app -it brunor9/brpa-logstash
 
 docker login --username=[username]
 docker push [account]/[repository]:[tag]
