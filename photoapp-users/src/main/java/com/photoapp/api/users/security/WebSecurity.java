@@ -3,7 +3,6 @@ package com.photoapp.api.users.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -24,10 +23,11 @@ public class WebSecurity {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		
 		http.authorizeHttpRequests(
 				authorizeRequests -> authorizeRequests.requestMatchers(environment.getProperty("api.h2.console.url.path")).permitAll()
 					.requestMatchers(environment.getProperty("api.actuator.url.path")).permitAll()
-					.requestMatchers(HttpMethod.GET, environment.getProperty("users.url.path")).permitAll())
+					.anyRequest().permitAll())
 				.addFilter(getAuthenticationFilter())
 				.csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions().disable());
