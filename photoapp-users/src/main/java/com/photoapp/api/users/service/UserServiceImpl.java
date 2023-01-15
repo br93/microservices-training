@@ -1,18 +1,17 @@
 package com.photoapp.api.users.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.photoapp.api.users.data.AlbumServiceClient;
+import com.photoapp.api.users.data.Role;
 import com.photoapp.api.users.data.UserEntity;
 import com.photoapp.api.users.data.UserRepository;
 import com.photoapp.api.users.model.AlbumResponseModel;
@@ -44,12 +43,14 @@ public class UserServiceImpl implements UserService {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
 		UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
+		userEntity.setRole(Role.USER);
+		
 		UserEntity newUser = userRepository.save(userEntity);
 
 		return modelMapper.map(newUser, UserDTO.class);
 	}
 
-	@Override
+	/*@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserEntity userEntity = userRepository.findByEmail(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
@@ -58,16 +59,17 @@ public class UserServiceImpl implements UserService {
 
 		return user;
 	}
+	
+	*/
 
 	@Override
-	public UserDTO getUserDetailsByEmail(String email) {
+	public UserDetails getUserDetailsByEmail(String email) {
 		UserEntity userEntity = userRepository.findByEmail(email)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-		UserDTO userDTO = new ModelMapper().map(userEntity, UserDTO.class);
-
-		return userDTO;
+		return userEntity;
 	}
+	
 
 	@Override
 	public UserDTO getUserByUserId(String userId) {
