@@ -31,8 +31,8 @@ public class SecurityConfiguration {
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(environment.getProperty("api.h2.console.url.path")).permitAll()
 				.requestMatchers(environment.getProperty("api.actuator.url.path")).permitAll()
-				.requestMatchers(HttpMethod.POST, "/v1/users").permitAll()
-				.requestMatchers(HttpMethod.POST, "/v1/auth").permitAll()
+				.requestMatchers(HttpMethod.POST, environment.getProperty("users.url.path")).permitAll()
+				.requestMatchers(HttpMethod.POST, environment.getProperty("login.url.path")).permitAll()
 				.anyRequest().authenticated())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(authProvider)
