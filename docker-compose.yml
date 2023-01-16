@@ -1,0 +1,108 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+      - "15671:15671"
+      - "5671:5671"
+      - "4369:4369"
+  elasticsearch:
+    image: elasticsearch:7.3.0
+    container_name: elasticsearch
+    volumes:
+      - /home/esdata1:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+  kibana:
+    image: kibana:7.3.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    restart: on-failure
+  mysql: 
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=photo_app
+  logstash:
+    build: ./logstash
+    container_name: logstash
+    volumes:
+      - /home/api-logs:/api-logs
+    depends_on:
+      - elasticsearch
+      - albums-ms
+      - users-ms
+    restart: on-failure
+  config-server:
+    build: ../microservices-training-local-config-server
+    container_name: photoapp-config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+    depends_on:
+      - rabbitmq
+    restart: on-failure
+  discovery-service:
+    build: ./photoapp-discovery-service
+    container_name: photoapp-discovery-service
+    ports:
+      - "8761:8761"
+    environment:
+      - config.host=photoapp-config-server
+    depends_on:
+      - config-server
+    restart: on-failure
+  api-gateway:
+    build: ./photoapp-api-gateway
+    container_name: photoapp-api-gateway
+    ports:
+      - "8765:8765"
+    environment:
+      - eureka.host=photoapp-discovery-service
+      - config.host=photoapp-config-server
+    depends_on:
+      - config-server
+      - discovery-service
+    restart: on-failure
+  albums-ms:
+    build: ./photoapp-albums
+    container_name: photoapp_albums-ms
+    volumes:
+      - /home/api-logs:/api-logs
+    environment:
+      - eureka.host=photoapp-discovery-service
+      - config.host=photoapp-config-server 
+    depends_on:
+      - config-server
+      - discovery-service
+    restart: on-failure
+  users-ms:
+    build: ./photoapp-users
+    container_name: photoapp-users-ms
+    volumes:
+      - /home/api-logs:/api-logs
+    environment:
+      - eureka.host=photoapp-discovery-service
+      - config.host=photoapp-config-server
+      - db.host=mysql
+    depends_on:
+      - config-server
+      - discovery-service
+      - mysql
+    restart: on-failure
+
