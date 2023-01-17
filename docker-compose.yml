@@ -9,23 +9,26 @@ services:
       - "15671:15671"
       - "5671:5671"
       - "4369:4369"
+    restart: on-failure
   elasticsearch:
     image: elasticsearch:7.3.0
     container_name: elasticsearch
     volumes:
-      - /home/esdata1:/usr/share/elasticsearch/data
+      - esdata1:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
     environment:
       - discovery.type=single-node
+    restart: on-failure
   kibana:
     image: kibana:7.3.0
     container_name: kibana
     ports:
       - "5601:5601"
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_started
     restart: on-failure
   mysql: 
     image: mysql:latest
@@ -37,16 +40,19 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=photo_app
+    restart: on-failure      
   logstash:
     build: ./logstash
     container_name: logstash
     volumes:
       - /home/api-logs:/api-logs
     depends_on:
-      - elasticsearch
-      - albums-ms
-      - users-ms
-    restart: on-failure
+      elasticsearch:
+        condition: service_started
+      albums-ms:
+        condition: service_healthy
+      users-ms:
+        condition: service_healthy
   config-server:
     build: ../microservices-training-local-config-server
     container_name: photoapp-config-server
@@ -55,7 +61,15 @@ services:
     environment:
       - spring.rabbitmq.host=rabbitmq
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_started
+    healthcheck:
+      test: exit 0
+      #test: ["CMD", "java", "HealthCheckConfigServer.java", "||", "exit", "1"]
+      #interval: 5s
+      #timeout: 3s
+      #retries: 5
+      #start_period: 15s
     restart: on-failure
   discovery-service:
     build: ./photoapp-discovery-service
@@ -65,7 +79,10 @@ services:
     environment:
       - config.host=photoapp-config-server
     depends_on:
-      - config-server
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: exit 0
     restart: on-failure
   api-gateway:
     build: ./photoapp-api-gateway
@@ -76,8 +93,12 @@ services:
       - eureka.host=photoapp-discovery-service
       - config.host=photoapp-config-server
     depends_on:
-      - config-server
-      - discovery-service
+      config-server:
+        condition: service_healthy
+      discovery-service:
+        condition: service_healthy
+    healthcheck:
+      test: exit 0
     restart: on-failure
   albums-ms:
     build: ./photoapp-albums
@@ -88,8 +109,12 @@ services:
       - eureka.host=photoapp-discovery-service
       - config.host=photoapp-config-server 
     depends_on:
-      - config-server
-      - discovery-service
+      config-server:
+        condition: service_healthy
+      discovery-service:
+        condition: service_healthy
+    healthcheck:
+      test: exit 0
     restart: on-failure
   users-ms:
     build: ./photoapp-users
@@ -101,8 +126,16 @@ services:
       - config.host=photoapp-config-server
       - db.host=mysql
     depends_on:
-      - config-server
-      - discovery-service
-      - mysql
+      config-server:
+        condition: service_healthy
+      discovery-service:
+        condition: service_healthy
+      mysql:
+        condition: service_started
+    healthcheck:
+      test: exit 0
     restart: on-failure
+volumes:
+  esdata1:
+    external: true
 
