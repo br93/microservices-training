@@ -15,7 +15,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 @FeignClient(name="albums-ms")
 public interface AlbumServiceClient {
 
-	@GetMapping("/v1/users/{id}/albums")
+	@GetMapping("/api/v1/users/{id}/albums")
 	@Retry(name = "albums-ms")
 	@CircuitBreaker(name = "albums-ms", fallbackMethod = "getAlbumsFallback")
 	public List<AlbumResponseModel> getAlbums(@PathVariable String id);

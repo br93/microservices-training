@@ -17,7 +17,7 @@ import com.photoapp.api.users.shared.AuthenticationDTO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("v1/auth")
+@RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 

@@ -24,7 +24,7 @@ import com.photoapp.api.users.shared.UserDTO;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("v1/users")
+@RequestMapping("api/v1/users")
 @AllArgsConstructor
 public class UserController {
 

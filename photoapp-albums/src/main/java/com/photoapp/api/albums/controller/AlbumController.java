@@ -18,7 +18,7 @@ import com.photoapp.api.albums.service.AlbumService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("v1/users/{id}/albums")
+@RequestMapping("api/v1/users/{id}/albums")
 @AllArgsConstructor
 public class AlbumController {
 

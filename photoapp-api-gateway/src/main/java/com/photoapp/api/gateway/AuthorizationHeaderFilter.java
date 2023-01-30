@@ -1,6 +1,7 @@
 package com.photoapp.api.gateway;
 
 import java.security.Key;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -21,66 +22,67 @@ import io.jsonwebtoken.security.Keys;
 import reactor.core.publisher.Mono;
 
 @Component
-public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Config>{
-	
+public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Config> {
+
 	@Autowired
 	private Environment env;
-	
+
 	public AuthorizationHeaderFilter() {
 		super(Config.class);
 	}
-	
+
 	public static class Config {
-		
+
 	}
 
 	@Override
 	public GatewayFilter apply(Config config) {
 		return (exchange, chain) -> {
-			
+
 			ServerHttpRequest request = exchange.getRequest();
-			
-			if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
+
+			if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
 				return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
-						
-			String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+
+			String authorizationHeader = Objects.requireNonNull(request.getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0);
 			String jwt = authorizationHeader.replace("Bearer ", "");
-			
-			if(!isJwtValid(jwt))
+
+			if (!isJwtValid(jwt))
 				return onError(exchange, "JWT token is not valid", HttpStatus.UNAUTHORIZED);
-			
+
 			return chain.filter(exchange);
 		};
-		
+
 	}
-	
-	private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus){
+
+	private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
 		ServerHttpResponse response = exchange.getResponse();
 		response.setStatusCode(httpStatus);
-		
+
 		return response.setComplete();
 	}
-	
+
 	private Boolean isJwtValid(String jwt) {
 		Boolean returnValue = true;
-		
+
 		String subject = null;
-		
+
 		try {
-			subject = Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(jwt).getBody().getSubject();
+			subject = Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(jwt).getBody()
+					.getSubject();
 		} catch (Exception ex) {
 			returnValue = false;
 		}
-		
-		if(subject == null || subject.isEmpty())
+
+		if (subject == null || subject.isEmpty())
 			returnValue = false;
-		
+
 		return returnValue;
 	}
-	
+
 	private Key getSigningKey() {
 		String secret = env.getProperty("token.secret");
-		
+
 		byte[] keyBytes = Decoders.BASE64.decode(secret);
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
